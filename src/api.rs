@@ -121,7 +121,7 @@ async fn options_handler() -> HttpResponse {
 }
 
 pub async fn start_api_server() -> std::io::Result<()> {
-    println!("Starting API server on http://0.0.0.0:80");
+    println!("Starting API server on http://0.0.0.0:8080");
     HttpServer::new(|| {
         // Configure CORS middleware
         let cors = Cors::default()
@@ -135,7 +135,7 @@ pub async fn start_api_server() -> std::io::Result<()> {
             .route("/calculate_weight", web::post().to(calculate_weight_from_stl))
             .route("/calculate_weight", web::route().method(Method::OPTIONS).to(options_handler))
     })
-    .bind("0.0.0.0:80")?
+    .bind("0.0.0.0:8080")?
     .run()
     .await
 }
